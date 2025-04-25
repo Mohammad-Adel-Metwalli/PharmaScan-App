@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:pharmascan/Screens/home_screen.dart';
 import 'package:pharmascan/utils/app_colors.dart';
 import 'package:pharmascan/utils/app_text_styles.dart';
 import 'package:pharmascan/widgets/custom_button.dart';
@@ -22,6 +23,8 @@ class _AuthScreenState extends State<AuthScreen> {
   final emailCtrl = TextEditingController();
   final passwordCtrl = TextEditingController();
   final confirmCtrl = TextEditingController();
+  final nameCtrl = TextEditingController();
+  final cityCtrl = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -51,6 +54,30 @@ class _AuthScreenState extends State<AuthScreen> {
               ),
             ),
             const SizedBox(height: 20),
+            if (!isLogin)
+              CustomTextFormField(
+                controller: nameCtrl,
+                labelText: 'Name',
+                hintText: 'e.g John Doe',
+                prefixIcon: Icons.person,
+                validator: (v) {
+                  if (v == null || v.isEmpty) return 'Please enter Your name';
+                  return null;
+                },
+              ),
+            const SizedBox(height: 10),
+            if (!isLogin)
+              CustomTextFormField(
+                controller: cityCtrl,
+                labelText: 'City',
+                hintText: 'Alexandria, Egypt',
+                prefixIcon: Icons.location_city,
+                validator: (v) {
+                  if (v == null || v.isEmpty) return 'Please enter Your City';
+                  return null;
+                },
+              ),
+            const SizedBox(height: 10),
 
             CustomTextFormField(
               controller: emailCtrl,
@@ -96,19 +123,28 @@ class _AuthScreenState extends State<AuthScreen> {
               ),
             if (!isLogin) const SizedBox(height: 12),
 
-            SizedBox(width: double.infinity, height: 48),
+            SizedBox(width: double.infinity, height: 30),
             CustomButton(
               color: AppColors.blue,
-              text: isLogin ? 'Login' : 'Sign Up',
+              child: Center(
+                child: Text(
+                  isLogin ? 'Login' : 'Sign Up',
+                  style: AppTextStyles.text.copyWith(
+                    color: Colors.white,
+                    fontSize: 20,
+                  ),
+                ),
+              ),
               onTap: () {
-                if (_formKey.currentState!.validate()) {}
+                // if (_formKey.currentState!.validate()) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomeScreen()),
+                );
+                // }
               },
               height: 55,
               width: 350,
-              textStyle: AppTextStyles.text.copyWith(
-                color: Colors.white,
-                fontSize: 20,
-              ),
             ),
             const SizedBox(height: 12),
 

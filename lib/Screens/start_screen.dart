@@ -58,12 +58,16 @@ class StartScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(bottom: 15),
             child: CustomButton(
-              textStyle: AppTextStyles.text.copyWith(
-                color: Colors.black,
-                fontSize: 24,
-              ),
               color: Colors.white,
-              text: 'Start Now',
+              child: Center(
+                child: Text(
+                  'Start Now',
+                  style: AppTextStyles.text.copyWith(
+                    color: Colors.black,
+                    fontSize: 26,
+                  ),
+                ),
+              ),
               onTap: () {
                 showModalBottomSheet(
                   context: context,
