@@ -109,7 +109,7 @@ class CustomDrawer extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   SizedBox(width: 10),
-                  Icon(Icons.medical_services_outlined, color: AppColors.blue),
+                  Image.asset('assets/Group 21.png', scale: 0.9),
                   const SizedBox(width: 10),
                   Text(
                     'Drugs',
