@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:pharmascan/Screens/auth_screen.dart';
 import 'package:pharmascan/utils/app_colors.dart';
 import 'package:pharmascan/utils/app_text_styles.dart';
 import 'package:pharmascan/widgets/custom_button.dart';
 
-class StartScreen extends StatelessWidget 
-{
+class StartScreen extends StatelessWidget {
   const StartScreen({super.key});
 
   @override
-  Widget build(BuildContext context) 
-  {
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.blue,
       body: Column(
@@ -46,7 +45,6 @@ class StartScreen extends StatelessWidget
               textAlign: TextAlign.center,
             ),
           ),
-
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
@@ -56,17 +54,20 @@ class StartScreen extends StatelessWidget
             ),
           ),
 
-          const Spacer(),
-
+          Spacer(),
           Padding(
             padding: const EdgeInsets.only(bottom: 15),
             child: CustomButton(
-              textStyle: AppTextStyles.text.copyWith(
-                color: Colors.black,
-                fontSize: 24,
-              ),
               color: Colors.white,
-              text: 'Start Now',
+              child: Center(
+                child: Text(
+                  'Start Now',
+                  style: AppTextStyles.text.copyWith(
+                    color: Colors.black,
+                    fontSize: 26,
+                  ),
+                ),
+              ),
               onTap: () {
                 showModalBottomSheet(
                   context: context,
