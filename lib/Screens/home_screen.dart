@@ -247,6 +247,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                               child: CustomDrugContainer(
                                 drugModel: drugs[index],
+                                ontap: () {},
                               ),
                             );
                           },
