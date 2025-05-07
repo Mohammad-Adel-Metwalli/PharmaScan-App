@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:pharmascan/Models/orders_history_model.dart';
+import 'package:pharmascan/models/drug_model.dart';
 import 'package:pharmascan/utils/app_colors.dart';
 import 'package:pharmascan/utils/app_styles.dart';
 import 'package:pharmascan/widgets/custom_app_bar.dart';
 import 'package:pharmascan/widgets/custom_drawer.dart';
+import 'package:pharmascan/widgets/custom_drug_container.dart';
 import 'package:pharmascan/widgets/orders_history_container.dart';
-import '../Models/orders_history_model.dart';
 
 class HomeScreen extends StatefulWidget
 {
@@ -14,9 +16,46 @@ class HomeScreen extends StatefulWidget
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen>
-{
-  List<OrdersHistoryModel> historyOfOrders = [
+class _HomeScreenState extends State<HomeScreen> {
+  List<DrugModel> drugs = [
+    DrugModel(
+      drugName: 'Antinal',
+      drugPrice: '25',
+      drugImage: 'Antinal.png',
+      quantity: '10',
+      drugparcode: 'Group.png',
+    ),
+    DrugModel(
+      drugName: 'Panadol Extra',
+      drugPrice: '40',
+      drugImage: 'Panadol.png',
+      quantity: '5',
+      drugparcode: 'Group.png',
+    ),
+    DrugModel(
+      drugName: 'Antinal Forte',
+      drugPrice: '30',
+      drugImage: 'Antinal.png',
+      quantity: '15',
+      drugparcode: 'Group.png',
+    ),
+    DrugModel(
+      drugName: 'Panadol Night',
+      drugPrice: '35',
+      drugImage: 'Panadol.png',
+      quantity: '8',
+      drugparcode: 'Group.png',
+    ),
+    DrugModel(
+      drugName: 'Antinal Junior',
+      drugPrice: '20',
+      drugImage: 'Antinal.png',
+      quantity: '12',
+      drugparcode: 'Group.png',
+    ),
+  ];
+
+  List<OrdersHistoryModel> history = [
     OrdersHistoryModel(
       orderId: '001',
       orderDate: '2025-04-25',
@@ -87,14 +126,14 @@ class _HomeScreenState extends State<HomeScreen>
                       height: 100,
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
-                        itemCount: historyOfOrders.length,
+                        itemCount: history.length,
                         itemBuilder: (context, index) {
                           return Padding(
                             padding: const EdgeInsets.symmetric(
                               horizontal: 10.0,
                             ),
                             child: OrdersHistoryContainer(
-                              historyModel: historyOfOrders[index],
+                              historyModel: history[index],
                             ),
                           );
                         },
@@ -106,11 +145,7 @@ class _HomeScreenState extends State<HomeScreen>
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Icon(
-                            Icons.local_hospital,
-                            color: AppColors.blue,
-                            size: 25,
-                          ),
+                          Image.asset('assets/Group 21.png', scale: 1),
                           Text(
                             ' Available Drugs',
                             style: AppStyles.pharmaScan16BoldCustomBoldGrey,
@@ -180,6 +215,26 @@ class _HomeScreenState extends State<HomeScreen>
                           }
                           return null;
                         },
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ListView.builder(
+                          itemCount: drugs.length,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 10.0,
+                              ),
+                              child: CustomDrugContainer(
+                                drugModel: drugs[index],
+                                ontap: () {},
+                              ),
+                            );
+                          },
+                        ),
                       ),
                     ),
                   ],

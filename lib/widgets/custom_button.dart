@@ -3,16 +3,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomButton extends StatelessWidget
 {
-  const CustomButton({super.key, this.onPressed, required this.buttonColor, required this.buttonBody, this.height = 65});
+  const CustomButton({super.key, this.onPressed, required this.buttonColor, required this.buttonBody, this.height = 65, this.width = double.infinity});
   final void Function()? onPressed;
-  final double height;
+  final double height, width;
   final Color buttonColor;
   final Widget buttonBody;
 
   @override
   Widget build(BuildContext context) => MaterialButton(
     height: height.h,
-    minWidth: double.infinity,
+    minWidth: width.w,
     color: buttonColor,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
     onPressed: onPressed,

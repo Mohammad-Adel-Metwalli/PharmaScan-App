@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:pharmascan/utils/app_colors.dart';
 import 'package:pharmascan/utils/app_styles.dart';
+import 'package:pharmascan/widgets/custom_button.dart';
 
 class CustomDrawer extends StatelessWidget
 {
@@ -102,32 +104,32 @@ class CustomDrawer extends StatelessWidget
             //   ),
             // ),
             const SizedBox(height: 8),
-            // CustomButton(
-            //   color: Colors.white,
-            //   width: 250,
-            //   height: 60,
-            //   child: Row(
-            //     mainAxisAlignment: MainAxisAlignment.start,
-            //     children: [
-            //       SizedBox(width: 10),
-            //       Icon(Icons.medical_services_outlined, color: AppColors.blue),
-            //       const SizedBox(width: 10),
-            //       Text(
-            //         'Drugs',
-            //         style: AppStyles.text.copyWith(
-            //           fontSize: 20,
-            //           fontWeight: FontWeight.bold,
-            //           color: AppColors.blue,
-            //         ),
-            //       ),
-            //       Spacer(),
-            //       IconButton(
-            //         onPressed: () {},
-            //         icon: Icon(Icons.arrow_forward_ios, color: AppColors.blue),
-            //       ),
-            //     ],
-            //   ),
-            // ),
+            CustomButton(
+              buttonColor: Colors.white,
+              width: 250,
+              height: 60,
+              buttonBody: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  SizedBox(width: 10),
+                  Image.asset('assets/Group 21.png', scale: 0.9),
+                  const SizedBox(width: 10),
+                  Text(
+                    'Drugs',
+                    style: GoogleFonts.poppins(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.blue,
+                    ),
+                  ),
+                  Spacer(),
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.arrow_forward_ios, color: AppColors.blue),
+                  ),
+                ],
+              ),
+            ),
             const SizedBox(height: 8),
             // CustomButton(
             //   color: Colors.white,
