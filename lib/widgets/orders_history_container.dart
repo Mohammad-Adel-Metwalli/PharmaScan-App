@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:pharmascan/models/history_model.dart';
+import 'package:pharmascan/Models/orders_history_model.dart';
 import 'package:pharmascan/utils/app_colors.dart';
-import 'package:pharmascan/utils/app_text_styles.dart';
+import 'package:pharmascan/utils/app_styles.dart';
 
-class HistoryContainer extends StatelessWidget {
-  HistoryContainer({super.key, required this.historyModel});
-
-  HistoryModel historyModel;
+class OrdersHistoryContainer extends StatelessWidget
+{
+  const OrdersHistoryContainer({super.key, required this.historyModel});
+  final OrdersHistoryModel historyModel;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context)
+  {
     return Container(
       height: 70,
       width: 210,
@@ -29,11 +30,7 @@ class HistoryContainer extends StatelessWidget {
                 const SizedBox(width: 5),
                 Text(
                   historyModel.orderDate,
-                  style: AppTextStyles.text.copyWith(
-                    fontSize: 11,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
+                  style: AppStyles.pharmaScan11BoldBlack,
                 ),
                 Spacer(),
                 Container(
@@ -49,11 +46,7 @@ class HistoryContainer extends StatelessWidget {
                   child: Center(
                     child: Text(
                       historyModel.orderStatus ? 'Delivered' : 'Canceled',
-                      style: AppTextStyles.text.copyWith(
-                        fontSize: 10,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
+                      style: AppStyles.pharmaScan10BoldWhite,
                     ),
                   ),
                 ),

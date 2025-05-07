@@ -1,34 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:pharmascan/utils/app_text_styles.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class CustomButton extends StatelessWidget {
-  CustomButton({
-    super.key,
-    required this.color,
-    this.onTap,
-    this.width = 380,
-    this.height = 65,
-    required this.child,
-  });
-  final color;
-  void Function()? onTap;
-  final double width;
+class CustomButton extends StatelessWidget
+{
+  const CustomButton({super.key, this.onPressed, required this.buttonColor, required this.buttonBody, this.height = 65});
+  final void Function()? onPressed;
   final double height;
-  final Widget? child;
+  final Color buttonColor;
+  final Widget buttonBody;
 
   @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        width: width,
-        height: height,
-        decoration: BoxDecoration(
-          color: color,
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: child,
-      ),
-    );
-  }
+  Widget build(BuildContext context) => MaterialButton(
+    height: height.h,
+    minWidth: double.infinity,
+    color: buttonColor,
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+    onPressed: onPressed,
+    child: buttonBody,
+  );
 }

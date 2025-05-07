@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:pharmascan/utils/app_colors.dart';
-import 'package:pharmascan/utils/app_text_styles.dart';
+import 'package:pharmascan/utils/app_styles.dart';
 
 class CustomAppBar extends StatelessWidget {
-  CustomAppBar({super.key, required this.onPressed});
-  void Function()? onPressed;
+  const CustomAppBar({super.key, required this.onPressed});
+  final void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -32,21 +32,21 @@ class CustomAppBar extends StatelessWidget {
             ), // Replace with your image path
           ),
           const SizedBox(width: 10),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Hello, 😊',
-                style: AppTextStyles.text.copyWith(fontSize: 15),
-              ),
-              const SizedBox(height: 5),
-              Text(
-                'Mr. Ahmed Fathy',
-                style: AppTextStyles.text.copyWith(fontSize: 18),
-              ),
-            ],
-          ),
+          // Column(
+          //   mainAxisAlignment: MainAxisAlignment.center,
+          //   crossAxisAlignment: CrossAxisAlignment.start,
+          //   children: [
+          //     Text(
+          //       'Hello, 😊',
+          //       style: AppStyles.text.copyWith(fontSize: 15),
+          //     ),
+          //     const SizedBox(height: 5),
+          //     Text(
+          //       'Mr. Ahmed Fathy',
+          //       style: AppStyles.text.copyWith(fontSize: 18),
+          //     ),
+          //   ],
+          // ),
         ],
       ),
     );

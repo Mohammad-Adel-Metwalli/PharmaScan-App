@@ -1,60 +1,63 @@
 import 'package:flutter/material.dart';
-import 'package:pharmascan/models/history_model.dart';
 import 'package:pharmascan/utils/app_colors.dart';
-import 'package:pharmascan/utils/app_text_styles.dart';
+import 'package:pharmascan/utils/app_styles.dart';
 import 'package:pharmascan/widgets/custom_app_bar.dart';
 import 'package:pharmascan/widgets/custom_drawer.dart';
-import 'package:pharmascan/widgets/history_container.dart';
+import 'package:pharmascan/widgets/orders_history_container.dart';
+import '../Models/orders_history_model.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatefulWidget
+{
   const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
-  List<HistoryModel> history = [
-    HistoryModel(
+class _HomeScreenState extends State<HomeScreen>
+{
+  List<OrdersHistoryModel> historyOfOrders = [
+    OrdersHistoryModel(
       orderId: '001',
       orderDate: '2025-04-25',
       orderStatus: true,
-      orderBill: '150',
+      orderBill: 150,
     ),
-    HistoryModel(
+    OrdersHistoryModel(
       orderId: '002',
       orderDate: '2025-04-24',
       orderStatus: false,
-      orderBill: '200',
+      orderBill: 200,
     ),
-    HistoryModel(
+    OrdersHistoryModel(
       orderId: '003',
       orderDate: '2025-04-23',
       orderStatus: true,
-      orderBill: '90',
+      orderBill: 90,
     ),
-    HistoryModel(
+    OrdersHistoryModel(
       orderId: '004',
       orderDate: '2025-04-22',
       orderStatus: true,
-      orderBill: '300',
+      orderBill: 300,
     ),
-    HistoryModel(
+    OrdersHistoryModel(
       orderId: '005',
       orderDate: '2025-04-21',
       orderStatus: false,
-      orderBill: '250',
+      orderBill: 250,
     ),
   ];
 
   @override
-  Widget build(BuildContext context) {
-    var _formKey = GlobalKey<FormState>();
+  Widget build(BuildContext context)
+  {
+    var formKey = GlobalKey<FormState>();
     return Scaffold(
       drawer: CustomDrawer(),
       body: SafeArea(
         child: Form(
-          key: _formKey,
+          key: formKey,
 
           child: Builder(
             builder:
@@ -71,14 +74,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Icon(Icons.history, color: AppColors.gray, size: 25),
+                          Icon(Icons.history, color: AppColors.customBoldGrey, size: 25),
                           Text(
                             ' Orders History',
-                            style: AppTextStyles.text.copyWith(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: AppColors.gray,
-                            ),
+                            style: AppStyles.pharmaScan16BoldCustomBoldGrey,
                           ),
                         ],
                       ),
@@ -88,14 +87,14 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 100,
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
-                        itemCount: history.length,
+                        itemCount: historyOfOrders.length,
                         itemBuilder: (context, index) {
                           return Padding(
                             padding: const EdgeInsets.symmetric(
                               horizontal: 10.0,
                             ),
-                            child: HistoryContainer(
-                              historyModel: history[index],
+                            child: OrdersHistoryContainer(
+                              historyModel: historyOfOrders[index],
                             ),
                           );
                         },
@@ -114,11 +113,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           Text(
                             ' Available Drugs',
-                            style: AppTextStyles.text.copyWith(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: AppColors.gray,
-                            ),
+                            style: AppStyles.pharmaScan16BoldCustomBoldGrey,
                           ),
                           Spacer(),
 
@@ -136,11 +131,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 children: [
                                   Text(
                                     'View All',
-                                    style: AppTextStyles.text.copyWith(
-                                      fontSize: 11,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white,
-                                    ),
+                                    style: AppStyles.pharmaScan11BoldWhite,
                                   ),
                                   Icon(
                                     Icons.arrow_forward_ios,
@@ -161,11 +152,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: TextFormField(
                         decoration: InputDecoration(
                           hintText: 'Search on drug...',
-                          hintStyle: AppTextStyles.text.copyWith(
-                            fontSize: 14,
-                            color: AppColors.gray.withOpacity(0.7),
-                            fontWeight: FontWeight.w400,
-                          ),
+                          hintStyle: AppStyles.pharmaScan14Weight400CustomBoldGrey70,
                           prefixIcon: Icon(Icons.search, color: AppColors.blue),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(15),
@@ -186,10 +173,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             horizontal: 10,
                           ),
                         ),
-                        style: AppTextStyles.text.copyWith(
-                          fontSize: 16,
-                          color: AppColors.blue,
-                        ),
+                        style: AppStyles.pharmaScan16Blue,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Please enter a search term';

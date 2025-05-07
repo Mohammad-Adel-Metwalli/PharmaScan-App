@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "843829285586",
+    "project_id": "pharma-scan-774b0",
+    "storage_bucket": "pharma-scan-774b0.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:843829285586:android:b712970a728d1f0e4b530b",
+        "android_client_info": {
+          "package_name": "com.example.pharmascan"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqMQOd3wKCQN_kGUC3PvBDY8faasqhigw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
