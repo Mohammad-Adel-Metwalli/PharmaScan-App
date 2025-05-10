@@ -20,12 +20,12 @@ class _CustomTextFormFieldState extends State<CustomTextFormField>
   Widget build(BuildContext context) => TextFormField( 
     onChanged: widget.onChanged,
     obscureText: widget.isObscured,
-    style: AppStyles.pharmaScan10Weight500Black, 
+    style: AppStyles.pharmaScan15Weight500Black, 
     autovalidateMode: AutovalidateMode.onUserInteraction, 
     decoration: InputDecoration(
       prefixIcon: widget.prefixIcon,
       suffixIcon: widget.suffixIcon,
-      label: Text(widget.label, style: AppStyles.pharmaScan10Weight500Black),
+      label: Text(widget.label, style: AppStyles.pharmaScan15Weight500Black),
       border: AppStyles.customOutlineInputBorderGrey(), 
       disabledBorder: AppStyles.customOutlineInputBorderGrey(),
       enabledBorder: AppStyles.customOutlineInputBorderBlue(),

@@ -1,14 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:pharmascan/Models/drug_model.dart';
 import 'package:pharmascan/Models/orders_history_model.dart';
-import 'package:pharmascan/models/drug_model.dart';
 import 'package:pharmascan/utils/app_colors.dart';
-import 'package:pharmascan/utils/app_styles.dart';
-import 'package:pharmascan/widgets/custom_app_bar.dart';
 import 'package:pharmascan/widgets/custom_drawer.dart';
-import 'package:pharmascan/widgets/custom_drug_container.dart';
-import 'package:pharmascan/widgets/orders_history_container.dart';
+import 'package:pharmascan/widgets/home_screen_body.dart';
 
-class HomeScreen extends StatefulWidget
+class HomeScreen extends StatefulWidget 
 {
   const HomeScreen({super.key});
 
@@ -16,232 +14,86 @@ class HomeScreen extends StatefulWidget
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends State<HomeScreen> 
+{
   List<DrugModel> drugs = [
     DrugModel(
-      drugName: 'Antinal',
-      drugPrice: '25',
-      drugImage: 'Antinal.png',
-      quantity: '10',
-      drugparcode: 'Group.png',
+      name: 'Antinal',
+      price: 25,
+      quantity: 10,
+      barCode: '001',
+      description: 'Antinal is a medication used to treat diarrhea and gastrointestinal infections. It contains the active ingredient nifuroxazide, which is an antibacterial agent that helps to reduce the number of bacteria in the intestines. Antinal is commonly used to relieve symptoms such as abdominal pain, cramping, and diarrhea. It is available in various forms, including tablets and oral suspension. It is important to follow the recommended dosage and consult a healthcare professional if symptoms persist or worsen.',
+    ),
+    DrugModel( 
+      name: 'Panadol Extra',
+      price: 40,
+      quantity: 5,
+      barCode: '002',
+      description: 'Panadol Extra is a pain relief medication that contains paracetamol and caffeine. It is used to relieve mild to moderate pain, such as headaches, toothaches, and muscle aches. The addition of caffeine enhances the effectiveness of paracetamol in relieving pain. Panadol Extra is available in tablet form and should be taken as directed on the packaging or by a healthcare professional. It is important to avoid exceeding the recommended dosage to prevent potential side effects.',
     ),
     DrugModel(
-      drugName: 'Panadol Extra',
-      drugPrice: '40',
-      drugImage: 'Panadol.png',
-      quantity: '5',
-      drugparcode: 'Group.png',
+      name: 'Antinal Forte',
+      price: 30,
+      quantity: 15,
+      barCode: '003',
+      description: '',
     ),
     DrugModel(
-      drugName: 'Antinal Forte',
-      drugPrice: '30',
-      drugImage: 'Antinal.png',
-      quantity: '15',
-      drugparcode: 'Group.png',
+      name: 'Panadol Night',
+      price: 35,
+      quantity: 8,
+      barCode: '004',
+      description: '',
     ),
     DrugModel(
-      drugName: 'Panadol Night',
-      drugPrice: '35',
-      drugImage: 'Panadol.png',
-      quantity: '8',
-      drugparcode: 'Group.png',
-    ),
-    DrugModel(
-      drugName: 'Antinal Junior',
-      drugPrice: '20',
-      drugImage: 'Antinal.png',
-      quantity: '12',
-      drugparcode: 'Group.png',
+      name: 'Antinal Junior',
+      price: 20,
+      quantity: 12,
+      barCode: '005',
+      description: '',
     ),
   ];
 
   List<OrdersHistoryModel> history = [
     OrdersHistoryModel(
       orderId: '001',
-      orderDate: '2025-04-25',
+      orderDate: Timestamp.fromDate(DateTime(2025, 4, 25)),
       orderStatus: true,
       orderBill: 150,
     ),
     OrdersHistoryModel(
       orderId: '002',
-      orderDate: '2025-04-24',
+      orderDate: Timestamp.fromDate(DateTime(2025, 4, 24)),
       orderStatus: false,
       orderBill: 200,
     ),
     OrdersHistoryModel(
       orderId: '003',
-      orderDate: '2025-04-23',
+      orderDate: Timestamp.fromDate(DateTime(2025, 4, 23)),
       orderStatus: true,
       orderBill: 90,
     ),
     OrdersHistoryModel(
       orderId: '004',
-      orderDate: '2025-04-22',
+      orderDate: Timestamp.fromDate(DateTime(2025, 4, 22)),
       orderStatus: true,
       orderBill: 300,
     ),
     OrdersHistoryModel(
       orderId: '005',
-      orderDate: '2025-04-21',
+      orderDate: Timestamp.fromDate(DateTime(2025, 4, 21)),
       orderStatus: false,
       orderBill: 250,
     ),
   ];
 
   @override
-  Widget build(BuildContext context)
+  Widget build(BuildContext context) 
   {
-    var formKey = GlobalKey<FormState>();
     return Scaffold(
       drawer: CustomDrawer(),
-      body: SafeArea(
-        child: Form(
-          key: formKey,
-
-          child: Builder(
-            builder:
-                (context) => Column(
-                  children: [
-                    CustomAppBar(
-                      onPressed: () {
-                        Scaffold.of(context).openDrawer();
-                      },
-                    ),
-                    const SizedBox(height: 30),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Icon(Icons.history, color: AppColors.customBoldGrey, size: 25),
-                          Text(
-                            ' Orders History',
-                            style: AppStyles.pharmaScan16BoldCustomBoldGrey,
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: 10),
-                    SizedBox(
-                      height: 100,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: history.length,
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 10.0,
-                            ),
-                            child: OrdersHistoryContainer(
-                              historyModel: history[index],
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                    SizedBox(height: 20),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Image.asset('assets/Group 21.png', scale: 1),
-                          Text(
-                            ' Available Drugs',
-                            style: AppStyles.pharmaScan16BoldCustomBoldGrey,
-                          ),
-                          Spacer(),
-
-                          Container(
-                            width: 80,
-                            height: 30,
-                            decoration: BoxDecoration(
-                              color: AppColors.blue,
-                              borderRadius: BorderRadius.circular(110),
-                            ),
-                            child: Center(
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Text(
-                                    'View All',
-                                    style: AppStyles.pharmaScan11BoldWhite,
-                                  ),
-                                  Icon(
-                                    Icons.arrow_forward_ios,
-                                    color: Colors.white,
-                                    size: 15,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          SizedBox(width: 10),
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: 10),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: TextFormField(
-                        decoration: InputDecoration(
-                          hintText: 'Search on drug...',
-                          hintStyle: AppStyles.pharmaScan14Weight400CustomBoldGrey70,
-                          prefixIcon: Icon(Icons.search, color: AppColors.blue),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
-                            borderSide: BorderSide(
-                              color: AppColors.blue,
-                              width: 2,
-                            ),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15),
-                            borderSide: BorderSide(
-                              color: AppColors.blue,
-                              width: 2,
-                            ),
-                          ),
-                          contentPadding: EdgeInsets.symmetric(
-                            vertical: 15,
-                            horizontal: 10,
-                          ),
-                        ),
-                        style: AppStyles.pharmaScan16Blue,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter a search term';
-                          }
-                          return null;
-                        },
-                      ),
-                    ),
-                    SizedBox(height: 10),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ListView.builder(
-                          itemCount: drugs.length,
-                          itemBuilder: (context, index) {
-                            return Padding(
-                              padding: const EdgeInsets.symmetric(
-                                vertical: 10.0,
-                              ),
-                              child: CustomDrugContainer(
-                                drugModel: drugs[index],
-                                ontap: () {},
-                              ),
-                            );
-                          },
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-          ),
-        ),
-      ),
+      backgroundColor: AppColors.white,
+      body: HomeScreenBody(history: history, drugs: drugs),
     );
   }
 }

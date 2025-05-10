@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:pharmascan/Helpers/firebase_helper.dart';
 import 'package:pharmascan/Models/user_model.dart';
+import 'package:pharmascan/Screens/home_screen.dart';
 import 'package:pharmascan/utils/app_colors.dart';
 import 'package:pharmascan/utils/assets_data.dart';
 import 'package:pharmascan/widgets/custom_button.dart';
@@ -79,6 +80,7 @@ class _AuthBottomSheetState extends State<AuthBottomSheet>
                       if(context.mounted)
                       { 
                         Navigator.pop(context); 
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
                       } 
                       setState(() => isLoading = !isLoading); 
                     }
@@ -175,7 +177,8 @@ class _AuthBottomSheetState extends State<AuthBottomSheet>
                       await FirebaseHelper.registeration(userModel: userModel, context: context); 
                       if(context.mounted) 
                       {  
-                        Navigator.pop(context); 
+                        Navigator.pop(context);
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
                       } 
                       setState(() => isLoading = !isLoading);
                     }

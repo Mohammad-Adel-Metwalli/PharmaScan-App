@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pharmascan/utils/app_colors.dart';
-import 'package:pharmascan/utils/app_styles.dart';
 import 'package:pharmascan/widgets/custom_button.dart';
 
 class CustomDrawer extends StatelessWidget
