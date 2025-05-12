@@ -143,12 +143,15 @@ class _CartScreenState extends State<CartScreen>
                         onPressed: () async 
                         {
                           List<CartModel> myCart = BlocProvider.of<CartCubit>(context).cart;
-                          double totalPrice = myCart.fold(0, (sum, item) => sum + (item.price * item.quantity));
-                          await FirebaseHelper.placeOrder(myCart: myCart, totalPrice: totalPrice, userModel: widget.userModel, orderNumber: orderNumber);
-                          if(context.mounted)
-                          {
-                            customCherrySuccessToast(successTitle: 'Order Placed Successfully!', successMessage: 'Check Your History').show(context);
-                            BlocProvider.of<CartCubit>(context).clearCart();
+                          if(myCart.isNotEmpty)
+                          { 
+                            double totalPrice = myCart.fold(0, (sum, item) => sum + (item.price * item.quantity));
+                            await FirebaseHelper.placeOrder(myCart: myCart, totalPrice: totalPrice, userModel: widget.userModel, orderNumber: orderNumber);
+                            if(context.mounted)
+                            {
+                              customCherrySuccessToast(successTitle: 'Order Placed Successfully!', successMessage: 'Check Your History').show(context);
+                              BlocProvider.of<CartCubit>(context).clearCart();
+                            }
                           }
                         },
                         buttonColor: AppColors.blue, 
