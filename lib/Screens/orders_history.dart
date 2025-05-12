@@ -137,7 +137,7 @@ class OrdersHistory extends StatelessWidget
                         
                         SizedBox(width: 10.w),
 
-                        Text('X ${allOrders[index].order[index].drugQuantity}', style: AppStyles.pharmaScan20BoldBlack), 
+                        Text('X ${allOrders[index].order[innerIndex].drugQuantity}', style: AppStyles.pharmaScan20BoldBlack), 
                       ],
                     ), 
 
