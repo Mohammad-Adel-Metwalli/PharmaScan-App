@@ -53,6 +53,7 @@ class _AuthBottomSheetState extends State<AuthBottomSheet>
                 CustomTextFormField(
                   label: 'email',
                   suffixIcon: null,
+                  keyboardType: TextInputType.emailAddress,
                   prefixIcon: Icon(Bootstrap.person_circle, color: AppColors.blue), 
                   onChanged: (data) => setState(() => userModel.email = data),
                 ), 
@@ -141,6 +142,7 @@ class _AuthBottomSheetState extends State<AuthBottomSheet>
                 CustomTextFormField(
                   label: 'email',
                   suffixIcon: null,
+                  keyboardType: TextInputType.emailAddress,
                   prefixIcon: Icon(Bootstrap.person_circle, color: AppColors.blue), 
                   onChanged: (data) => setState(() => userModel.email = data),
                 ), 

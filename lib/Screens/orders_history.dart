@@ -147,7 +147,7 @@ class OrdersHistory extends StatelessWidget
                       children: [
                         Text('${allOrders[index].order[innerIndex].drugPrice} EGP', style: AppStyles.pharmaScan16BlueW700),
 
-                        SizedBox(width: MediaQuery.sizeOf(context).width * 0.45),
+                        SizedBox(width: MediaQuery.sizeOf(context).width * 0.35),
                         
                         Text('${(allOrders[index].order[innerIndex].drugPrice * allOrders[index].order[innerIndex].drugQuantity).toStringAsFixed(2)} EGP', style: AppStyles.pharmaScan16BlueW700),
 

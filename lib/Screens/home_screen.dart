@@ -6,6 +6,7 @@ import 'package:pharmascan/Models/drug_model.dart';
 import 'package:pharmascan/Models/user_model.dart';
 import 'package:pharmascan/Screens/drug_details_screen.dart';
 import 'package:pharmascan/utils/app_colors.dart';
+import 'package:pharmascan/widgets/custom_cherry_error_toast.dart';
 import 'package:pharmascan/widgets/custom_drawer.dart';
 import 'package:pharmascan/widgets/home_screen_body.dart';
 import 'package:simple_barcode_scanner/simple_barcode_scanner.dart';
@@ -35,14 +36,23 @@ class _HomeScreenState extends State<HomeScreen>
         {
           String? result = await SimpleBarcodeScanner.scanBarcode(
             context, 
-            cameraFace: CameraFace.front, 
+            cameraFace: CameraFace.back, 
           );
 
           setState(() => scanBarCodeResult = result ?? 'Unknown');
-          DrugModel scannedDrug = await FirebaseHelper.fetchDrug(barCode: scanBarCodeResult);
+          DrugModel scannedDrug = await FirebaseHelper.fetchDrug(barCode: scanBarCodeResult); 
+
           if(context.mounted)
           { 
-            Navigator.push(context, MaterialPageRoute(builder: (context) => DrugDetailsScreen(drugModel: scannedDrug)));
+            if(scannedDrug.name == '')
+            { 
+              customCherryErrorToast(errorTitle: 'Error', errorMessage: 'Drug isn\'t found').show(context);
+            }
+
+            else
+            {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => DrugDetailsScreen(drugModel: scannedDrug)));
+            }
           }
         },
         backgroundColor: AppColors.blue,

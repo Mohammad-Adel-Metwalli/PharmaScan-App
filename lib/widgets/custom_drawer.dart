@@ -169,7 +169,7 @@ class CustomDrawer extends StatelessWidget
                     Icon(Icons.history, color: AppColors.blue, size: 30.h), 
           
                     Text(
-                      'Orders History',
+                      'History',
                       style: AppStyles.pharmascan20BoldBlue, 
                     ),
           
