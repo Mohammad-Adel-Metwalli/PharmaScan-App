@@ -144,6 +144,20 @@ abstract class FirebaseHelper
     );
   }
 
+  static Future<DrugModel> fetchDrug({required String barCode}) async
+  { 
+    QuerySnapshot<Map<String, dynamic>> drug = await firebaseFirestoreInstance.collection('drugs').where('barCode', isEqualTo: barCode).get(); 
+    Map<String, dynamic> drugData = drug.docs.first.data();
+
+    return DrugModel(
+      name: drugData['name'],
+      price: drugData['price'], 
+      quantity: drugData['quantity'],
+      description: drugData['description'],
+      barCode: drugData['barCode'],
+    );
+  }
+
   static Future<void> placeOrder({required List<CartModel> myCart, required double totalPrice, required UserModel userModel, required int orderNumber}) async
   {
     await firebaseFirestoreInstance.collection('orders').add({
