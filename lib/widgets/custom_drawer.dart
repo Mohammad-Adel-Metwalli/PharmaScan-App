@@ -1,224 +1,221 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:icons_plus/icons_plus.dart';
+import 'package:pharmascan/Helpers/hive_helper.dart';
+import 'package:pharmascan/Models/user_model.dart';
+import 'package:pharmascan/Screens/authentication_screen.dart';
+import 'package:pharmascan/Screens/cart_screen.dart';
+import 'package:pharmascan/Screens/drugs_screen.dart';
+import 'package:pharmascan/Screens/orders_history.dart';
 import 'package:pharmascan/utils/app_colors.dart';
+import 'package:pharmascan/utils/app_styles.dart';
+import 'package:pharmascan/widgets/activation.dart';
 import 'package:pharmascan/widgets/custom_button.dart';
 
 class CustomDrawer extends StatelessWidget
 {
-  const CustomDrawer({super.key});
+  const CustomDrawer({super.key, required this.userModel});
+  final UserModel userModel;
 
   @override
   Widget build(BuildContext context)
   {
     return Drawer(
-      child: Container(
-        color: AppColors.blue,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            SizedBox(height: 20),
-            CircleAvatar(
-              backgroundColor: AppColors.blue,
-              radius: 45,
-              backgroundImage: AssetImage(
-                'assets/Person-Avatar.png',
-              ), // Replace with your image path
-            ),
-            const SizedBox(height: 5),
-            // Text(
-            //   'Mr. Ahmed Fathy',
-            //   style: AppStyles.text.copyWith(
-            //     fontSize: 20,
-            //     fontWeight: FontWeight.bold,
-            //   ),
-            // ),
-            const SizedBox(height: 5),
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.center,
-            //   children: [
-            //     Icon(Icons.location_on, color: Colors.white),
-            //     Text(
-            //       'Alexandria',
-            //       style: AppStyles.text.copyWith(
-            //         fontSize: 18,
-            //         fontWeight: FontWeight.bold,
-            //       ),
-            //     ),
-            //   ],
-            // ),
-            const SizedBox(height: 5),
-            Container(height: 4, width: 250, color: Colors.white),
-            const SizedBox(height: 20),
-            // CustomButton(
-            //   color: Colors.white,
-            //   width: 250,
-            //   height: 60,
-            //   child: Row(
-            //     mainAxisAlignment: MainAxisAlignment.start,
-            //     children: [
-            //       SizedBox(width: 10),
-            //       Icon(Icons.home_outlined, color: AppColors.blue),
-            //       const SizedBox(width: 10),
-            //       Text(
-            //         'Home',
-            //         style: AppStyles.text.copyWith(
-            //           fontSize: 20,
-            //           fontWeight: FontWeight.bold,
-            //           color: AppColors.blue,
-            //         ),
-            //       ),
-            //       Spacer(),
-            //       IconButton(
-            //         onPressed: () {},
-            //         icon: Icon(Icons.arrow_forward_ios, color: AppColors.blue),
-            //       ),
-            //     ],
-            //   ),
-            // ),
-            const SizedBox(height: 8),
-            // CustomButton(
-            //   color: Colors.white,
-            //   width: 250,
-            //   height: 60,
-            //   child: Row(
-            //     mainAxisAlignment: MainAxisAlignment.start,
-            //     children: [
-            //       SizedBox(width: 10),
-            //       Icon(Icons.shopping_bag_outlined, color: AppColors.blue),
-            //       const SizedBox(width: 10),
-            //       Text(
-            //         'My Cart',
-            //         style: AppStyles.text.copyWith(
-            //           fontSize: 20,
-            //           fontWeight: FontWeight.bold,
-            //           color: AppColors.blue,
-            //         ),
-            //       ),
-            //       Spacer(),
-            //       IconButton(
-            //         onPressed: () {},
-            //         icon: Icon(Icons.arrow_forward_ios, color: AppColors.blue),
-            //       ),
-            //     ],
-            //   ),
-            // ),
-            const SizedBox(height: 8),
-            CustomButton(
-              buttonColor: Colors.white,
-              width: 250,
-              height: 60,
-              buttonBody: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  SizedBox(width: 10),
-                  Image.asset('assets/Group 21.png', scale: 0.9),
-                  const SizedBox(width: 10),
-                  Text(
-                    'Drugs',
-                    style: GoogleFonts.poppins(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.blue,
+      backgroundColor: AppColors.blue,
+      child: Center(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 15.w),
+          child: Column(
+            children: [
+              SizedBox(height: 30.h),
+              
+              Center(
+                child: Stack(
+                  children: [
+                    Container( 
+                      height: 125.h, 
+                      width: 125.w, 
+                      decoration: BoxDecoration( 
+                        shape: BoxShape.circle, 
+                        color: AppColors.blue, 
+                        border: Border.all(color: AppColors.white, width: 2), 
+                        image: DecorationImage(image: AssetImage('assets/Person-Avatar.png'), fit: BoxFit.cover), 
+                      ), 
                     ),
-                  ),
-                  Spacer(),
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(Icons.arrow_forward_ios, color: AppColors.blue),
+                
+                    Positioned(
+                      bottom: 10.h,
+                      right: 10.w,
+                      child: Activation(
+                        height: 20,
+                        width: 20,
+                        borderWidth: 3,
+                      ), 
+                    ),
+                  ],
+                ),
+              ),
+          
+              SizedBox(height: 10.h),
+          
+              Center(
+                child: Text(
+                  'Mr. ${userModel.username}',
+                  style: AppStyles.pharmaScan22Weight700White,
+                ),
+              ), 
+              
+              SizedBox(height: 10.h),
+          
+              Row(
+                spacing: 5.w,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [ 
+                  Icon(Icons.location_on_sharp, color: Colors.white),
+                  Text(
+                    userModel.city,
+                    style: AppStyles.pharmaScan20Weight600White,
                   ),
                 ],
+              ), 
+
+              SizedBox(height: 10.h),
+          
+              Row(
+                spacing: 5.w,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [ 
+                  Icon(EvaIcons.phone_call, color: Colors.white),
+                  Text(
+                    '+2${userModel.phoneNumber}',
+                    style: AppStyles.pharmaScan20Weight600White,
+                  ),
+                ],
+              ), 
+              
+              SizedBox(height: 5.h), 
+          
+              Divider(
+                thickness: 4.h,
+                indent: 15.w,
+                endIndent: 15.w,
+                color: AppColors.white,
               ),
-            ),
-            const SizedBox(height: 8),
-            // CustomButton(
-            //   color: Colors.white,
-            //   width: 250,
-            //   height: 60,
-            //   child: Row(
-            //     mainAxisAlignment: MainAxisAlignment.start,
-            //     children: [
-            //       SizedBox(width: 10),
-            //       Icon(Icons.history, color: AppColors.blue),
-            //       const SizedBox(width: 10),
-            //       Text(
-            //         'History',
-            //         style: AppStyles.text.copyWith(
-            //           fontSize: 20,
-            //           fontWeight: FontWeight.bold,
-            //           color: AppColors.blue,
-            //         ),
-            //       ),
-            //       Spacer(),
-            //       IconButton(
-            //         onPressed: () {},
-            //         icon: Icon(Icons.arrow_forward_ios, color: AppColors.blue),
-            //       ),
-            //     ],
-            //   ),
-            // ),
-            Spacer(),
-            // Text(
-            //   'DEPI©2025',
-            //   style: AppStyles.text.copyWith(
-            //     fontSize: 20,
-            //     fontWeight: FontWeight.bold,
-            //   ),
-            // ),
-            // CustomButton(
-            //   color: Colors.white,
-            //   width: 250,
-            //   height: 60,
-            //   child: Row(
-            //     mainAxisAlignment: MainAxisAlignment.start,
-            //     children: [
-            //       SizedBox(width: 10),
-            //       Icon(Icons.settings_outlined, color: AppColors.blue),
-            //       const SizedBox(width: 10),
-            //       Text(
-            //         'Settings',
-            //         style: AppStyles.text.copyWith(
-            //           fontSize: 20,
-            //           fontWeight: FontWeight.bold,
-            //           color: AppColors.blue,
-            //         ),
-            //       ),
-            //       Spacer(),
-            //       IconButton(
-            //         onPressed: () {},
-            //         icon: Icon(Icons.arrow_forward_ios, color: AppColors.blue),
-            //       ),
-            //     ],
-            //   ),
-            // ),
-            const SizedBox(height: 8),
-            // CustomButton(
-            //   color: Colors.white,
-            //   width: 250,
-            //   height: 60,
-            //   child: Row(
-            //     mainAxisAlignment: MainAxisAlignment.start,
-            //     children: [
-            //       SizedBox(width: 10),
-            //       Icon(Icons.logout, color: AppColors.blue),
-            //       const SizedBox(width: 10),
-            //       Text(
-            //         'Home',
-            //         style: AppStyles.text.copyWith(
-            //           fontSize: 20,
-            //           fontWeight: FontWeight.bold,
-            //           color: AppColors.blue,
-            //         ),
-            //       ),
-            //       Spacer(),
-            //       IconButton(
-            //         onPressed: () {},
-            //         icon: Icon(Icons.arrow_forward_ios, color: AppColors.blue),
-            //       ),
-            //     ],
-            //   ),
-            // ),
-            const SizedBox(height: 15),
-          ],
+          
+              SizedBox(height: 20.h),
+          
+              CustomButton(
+                onPressed: () 
+                {
+                  Navigator.pop(context);
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => CartScreen(userModel: userModel)));
+                },
+                buttonColor: AppColors.white, 
+                buttonBody: Row(
+                  spacing: 10.w,
+                  children: [         
+                    Icon(MingCute.shopping_bag_1_fill, color: AppColors.blue), 
+          
+                    Text(
+                      'My Cart',
+                      style: AppStyles.pharmascan20BoldBlue, 
+                    ),
+          
+                    const Spacer(),
+          
+                    Icon(Icons.chevron_right_rounded, color: AppColors.blue, size: 30.h),
+                  ],
+                ),
+              ),
+          
+              SizedBox(height: 10.h),
+          
+              CustomButton(
+                onPressed: () 
+                {
+                  Navigator.pop(context);
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => DrugsScreen(userModel: userModel)));
+                },
+                buttonColor: AppColors.white, 
+                buttonBody: Row(
+                  spacing: 10.w,
+                  children: [         
+                    Image.asset('assets/Group 21.png', scale: 0.9), 
+          
+                    Text(
+                      'Drugs',
+                      style: AppStyles.pharmascan20BoldBlue, 
+                    ),
+          
+                    const Spacer(),
+          
+                    Icon(Icons.chevron_right_rounded, color: AppColors.blue, size: 30.h),
+                  ],
+                ),
+              ), 
+              
+              SizedBox(height: 10.h),
+          
+              CustomButton(
+                onPressed: () 
+                {
+                  Navigator.pop(context);
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => OrdersHistory(userModel: userModel)));
+                },
+                buttonColor: AppColors.white, 
+                buttonBody: Row(
+                  spacing: 10.w,
+                  children: [         
+                    Icon(Icons.history, color: AppColors.blue, size: 30.h), 
+          
+                    Text(
+                      'Orders History',
+                      style: AppStyles.pharmascan20BoldBlue, 
+                    ),
+          
+                    const Spacer(),
+          
+                    Icon(Icons.chevron_right_rounded, color: AppColors.blue, size: 30.h),
+                  ],
+                ),
+              ),
+          
+              const Spacer(),
+
+              Text(
+                'DEPI©2025',
+                style: AppStyles.pharmaScan20Weight600White,
+              ), 
+
+              SizedBox(height: 10.h),
+
+              CustomButton(
+                onPressed: () 
+                {
+                  HiveHelper.logout(userModel: userModel);
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const AuthenticationScreen()));
+                },
+                buttonColor: AppColors.white, 
+                buttonBody: Row(
+                  spacing: 10.w,
+                  children: [         
+                    Icon(IonIcons.log_out, color: AppColors.blue, size: 30.h), 
+          
+                    Text(
+                      'Logout',
+                      style: AppStyles.pharmascan20BoldBlue, 
+                    ),
+          
+                    const Spacer(),
+          
+                    Icon(Icons.chevron_right_rounded, color: AppColors.blue, size: 30.h),
+                  ],
+                ),
+              ), 
+              
+              SizedBox(height: 20.h),
+            ],
+          ),
         ),
       ),
     );

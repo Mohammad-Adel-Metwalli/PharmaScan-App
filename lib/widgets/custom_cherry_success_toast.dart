@@ -6,7 +6,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:pharmascan/utils/app_colors.dart';
 
-CherryToast customCherrySuccessToast({required String successTitle, required String successMessage}) => CherryToast.success(
+CherryToast customCherrySuccessToast({required String successTitle, required String successMessage}) => CherryToast.success( 
+  displayCloseButton: false,
   backgroundColor: AppColors.white,
   animationType: AnimationType.fromTop,
   toastDuration: Duration(milliseconds: 4500),

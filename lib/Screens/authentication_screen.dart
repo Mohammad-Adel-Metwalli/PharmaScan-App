@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:pharmascan/utils/app_colors.dart';
 import '../widgets/authentication_screen_body.dart';
 
-class StartScreen extends StatefulWidget
+class AuthenticationScreen extends StatefulWidget
 {
-  const StartScreen({super.key});
+  const AuthenticationScreen({super.key,});
 
   @override
-  State<StartScreen> createState() => _StartScreenState();
+  State<AuthenticationScreen> createState() => _AuthenticationScreenState();
 }
 
-class _StartScreenState extends State<StartScreen>
+class _AuthenticationScreenState extends State<AuthenticationScreen>
 {
   @override
   void didChangeDependencies()

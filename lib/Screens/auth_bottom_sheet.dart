@@ -3,10 +3,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:pharmascan/Helpers/firebase_helper.dart';
+import 'package:pharmascan/Helpers/hive_helper.dart';
 import 'package:pharmascan/Models/user_model.dart';
 import 'package:pharmascan/Screens/home_screen.dart';
 import 'package:pharmascan/utils/app_colors.dart';
 import 'package:pharmascan/utils/assets_data.dart';
+import 'package:pharmascan/widgets/admin_switch.dart';
 import 'package:pharmascan/widgets/custom_button.dart';
 import 'package:pharmascan/widgets/custom_circular_indicator.dart';
 import 'package:pharmascan/widgets/custom_drag_handle.dart';
@@ -64,7 +66,9 @@ class _AuthBottomSheetState extends State<AuthBottomSheet>
                     icon: Icon(isObscured ? FontAwesome.eye_solid : FontAwesome.eye_slash_solid),
                   ),
                   onChanged: (data) => setState(() => userModel.setPassword = data),
-                ),
+                ), 
+                
+                AdminSwitch(userModel: userModel), 
             
                 SizedBox(height: 15.h),
             
@@ -76,11 +80,13 @@ class _AuthBottomSheetState extends State<AuthBottomSheet>
                     if(formKey.currentState!.validate())
                     {
                       setState(() => isLoading = !isLoading);
-                      await FirebaseHelper.authentication(userModel: userModel, context: context); 
+                      await FirebaseHelper.authentication(userModel: userModel, context: context);
+                      UserModel userProfile = await FirebaseHelper.getUserProfile(userModel: userModel);
+                      HiveHelper.addUserProfile(userModel: userProfile);
                       if(context.mounted)
                       { 
                         Navigator.pop(context); 
-                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeScreen(userModel: userModel)));
                       } 
                       setState(() => isLoading = !isLoading); 
                     }
@@ -164,6 +170,16 @@ class _AuthBottomSheetState extends State<AuthBottomSheet>
                   prefixIcon: Icon(Clarity.world_solid, color: AppColors.blue),
                 ),
             
+                CustomTextFormField( 
+                  label: 'phone', 
+                  suffixIcon: null, 
+                  keyboardType: TextInputType.phone,
+                  prefixIcon: Icon(EvaIcons.phone_call, color: AppColors.blue), 
+                  onChanged: (data) => setState(() => userModel.phoneNumber = data),
+                ),
+
+                AdminSwitch(userModel: userModel),
+
                 SizedBox(height: 15.h),
             
                 isLoading ? CustomCircularIndicator() : CustomButton(
@@ -171,14 +187,16 @@ class _AuthBottomSheetState extends State<AuthBottomSheet>
                   buttonBody: Center(child: Text('Register', style: GoogleFonts.poppins(fontWeight: FontWeight.w700, color: AppColors.white, fontSize: 22.sp))),
                   onPressed: () async
                   { 
+                    userModel.isLoggedIn = true;
                     if(formKey.currentState!.validate()) 
                     { 
                       setState(() => isLoading = !isLoading); 
-                      await FirebaseHelper.registeration(userModel: userModel, context: context); 
+                      await FirebaseHelper.registeration(userModel: userModel, context: context);
+                      HiveHelper.addUserProfile(userModel: userModel);
                       if(context.mounted) 
                       {  
                         Navigator.pop(context);
-                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeScreen(userModel: userModel)));
                       } 
                       setState(() => isLoading = !isLoading);
                     }

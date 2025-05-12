@@ -5,8 +5,10 @@ import 'package:pharmascan/utils/app_colors.dart';
 
 class CustomCircularIndicator extends StatelessWidget 
 {
-  const CustomCircularIndicator({super.key,});
+  const CustomCircularIndicator({super.key, this.size = 60, this.color = AppColors.blue});
+  final double size;
+  final Color color;
 
   @override
-  Widget build(BuildContext context) => SpinKitFadingCircle(color: AppColors.blue, size: 60.h);
+  Widget build(BuildContext context) => SpinKitFadingCircle(color: color, size: size.h);
 }

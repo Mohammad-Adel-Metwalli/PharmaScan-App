@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:pharmascan/utils/app_colors.dart';
 
 CherryToast customCherryErrorToast({required String errorTitle, required String errorMessage}) => CherryToast.error(
+  displayCloseButton: false,
   backgroundColor: AppColors.white,
   animationType: AnimationType.fromTop,
   toastDuration: Duration(milliseconds: 4500),

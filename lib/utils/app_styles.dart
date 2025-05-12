@@ -23,6 +23,12 @@ class AppStyles
     fontWeight: FontWeight.bold,
   );
 
+  static TextStyle pharmaScan20BoldBlack = GoogleFonts.poppins(
+    fontSize: 20.sp,
+    color: AppColors.black,
+    fontWeight: FontWeight.bold,
+  );
+
   static TextStyle pharmaScan16BoldCustomBoldGrey = GoogleFonts.poppins(
     fontSize: 16.sp,
     fontWeight: FontWeight.bold,
@@ -38,6 +44,12 @@ class AppStyles
   static TextStyle pharmaScan16Blue = GoogleFonts.poppins(
     fontSize: 16.sp,
     color: AppColors.blue,
+  );
+
+  static TextStyle pharmaScan16BlueW700 = GoogleFonts.poppins(
+    fontSize: 16.sp,
+    color: AppColors.blue,
+    fontWeight: FontWeight.w700,
   );
 
   static TextStyle pharmaScan14Weight400CustomBoldGrey70 = GoogleFonts.poppins(
@@ -100,13 +112,26 @@ class AppStyles
     fontWeight: FontWeight.w700,
   );
 
-  static TextStyle pharmaScan22Weight700White = GoogleFonts.poppins(
+  static TextStyle pharmaScan20Weight700White = GoogleFonts.poppins(
     fontSize: 20.sp,
     color: AppColors.white,
     fontWeight: FontWeight.w700,
   );
 
+  static TextStyle pharmaScan22Weight700White = GoogleFonts.poppins(
+    fontSize: 22.sp,
+    color: AppColors.white,
+    fontWeight: FontWeight.w700,
+  );
+
+  static TextStyle pharmascan20BoldBlue = GoogleFonts.poppins( 
+    fontSize: 20, 
+    color: AppColors.blue, 
+    fontWeight: FontWeight.bold, 
+  );
+
   static OutlineInputBorder customOutlineInputBorderGrey() => OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: BorderSide(color: AppColors.grey, width: 2));
   static OutlineInputBorder customOutlineInputBorderBlue() => OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: BorderSide(color: AppColors.blue, width: 2));
-  static OutlineInputBorder borderStyleOfSearchBar() => OutlineInputBorder(borderRadius: BorderRadius.circular(15), borderSide: BorderSide(color: AppColors.blue, width: 2));
+  static OutlineInputBorder borderStyleOfSearchBar() => OutlineInputBorder(borderRadius: BorderRadius.circular(15), borderSide: BorderSide(color: AppColors.blue, width: 2)); 
+  static BorderRadius bottomSheetBorderRadius = BorderRadius.vertical(top: Radius.circular(15.r));
 }

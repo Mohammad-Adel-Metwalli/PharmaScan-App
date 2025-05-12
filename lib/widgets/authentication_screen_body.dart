@@ -67,7 +67,7 @@ class _AuthenticationScreenBodyState extends State<AuthenticationScreenBody>
                       valueListenable: isLoginForm,
                       builder: (context, notifier, _) => AnimatedContainer(
                         duration: Duration(milliseconds: 500),
-                        height: isLoginForm.value ? 420.h : 550.h,
+                        height: isLoginForm.value ? 470.h : 660.h,
                         width: double.infinity,
                         decoration: BoxDecoration( 
                           color: AppColors.white, 

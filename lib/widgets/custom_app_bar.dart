@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:pharmascan/Models/user_model.dart';
 import 'package:pharmascan/utils/app_colors.dart';
 import 'package:pharmascan/utils/app_styles.dart';
+import 'package:pharmascan/widgets/activation.dart';
 import 'package:pharmascan/widgets/custom_button.dart';
 
 class CustomAppBar extends StatelessWidget 
 {
-  const CustomAppBar({super.key,});
+  const CustomAppBar({super.key, required this.userModel,});
+  final UserModel userModel;
 
   @override
   Widget build(BuildContext context) 
@@ -34,15 +37,25 @@ class CustomAppBar extends StatelessWidget
 
           SizedBox(width: 10.w),
 
-          Container(
-            height: 100.h,
-            width: 100.w,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle, 
-              color: AppColors.blue, 
-              border: Border.all(color: AppColors.white, width: 2),
-              image: DecorationImage(image: AssetImage('assets/Person-Avatar.png'), fit: BoxFit.cover),
-            ),
+          Stack(
+            children: [
+              Container(
+                height: 100.h,
+                width: 100.w,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle, 
+                  color: AppColors.blue, 
+                  border: Border.all(color: AppColors.white, width: 2),
+                  image: DecorationImage(image: AssetImage('assets/Person-Avatar.png'), fit: BoxFit.cover),
+                ),
+              ),
+
+              Positioned(
+                right: 7.w,
+                bottom: 10.h,
+                child: Activation(),
+              ),
+            ],
           ),
           
           SizedBox(width: 10.w),
@@ -55,7 +68,7 @@ class CustomAppBar extends StatelessWidget
               
               SizedBox(height: 2.h),
 
-              Text('Mr. Ahmad Fathy', style: AppStyles.pharmaScan22Weight700White),
+              Text('Mr. ${userModel.username}', style: AppStyles.pharmaScan20Weight700White),
             ],
           ),
         ],

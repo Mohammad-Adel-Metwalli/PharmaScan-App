@@ -39,10 +39,10 @@ class OrdersHistoryItem extends StatelessWidget
                 width: 70.w,
                 decoration: BoxDecoration( 
                   borderRadius: BorderRadius.circular(5), 
-                  color: historyModel.orderStatus ? AppColors.green : AppColors.red,
+                  color: AppColors.green,
                 ),
 
-                child: Center(child: Text(historyModel.orderStatus ? 'Delivered' : 'Cancelled', style: AppStyles.pharmaScan11BoldWhite)),
+                child: Center(child: Text('Delivered', style: AppStyles.pharmaScan11BoldWhite)),
               ), 
             ],
           ),
@@ -54,11 +54,11 @@ class OrdersHistoryItem extends StatelessWidget
             children: [
               Icon(MingCute.shopping_bag_1_fill, color: AppColors.orange, size: 30.h), 
 
-              Text(historyModel.orderId, style: AppStyles.pharmaScan12BoldBlack),
+              Text(historyModel.orderNumber, style: AppStyles.pharmaScan12BoldBlack),
 
               const Spacer(),
               
-              Text('Bill: ${historyModel.orderBill} EGP', style: AppStyles.pharmaScan15Boldlack),
+              Text('Bill: ${historyModel.totalPrice} EGP', style: AppStyles.pharmaScan15Boldlack),
             ],
           ),
         ],

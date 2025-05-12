@@ -2,10 +2,8 @@ import 'package:barcode_widget/barcode_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:icons_plus/icons_plus.dart';
 import 'package:pharmascan/Models/drug_model.dart';
 import 'package:pharmascan/utils/app_colors.dart';
-import 'package:pharmascan/utils/app_styles.dart';
 
 class CustomDrugItem extends StatefulWidget 
 {
@@ -39,8 +37,6 @@ class _CustomDrugItemState extends State<CustomDrugItem>
 
             Image.asset('assets/Panadol.png', scale: 1.3), 
             
-            SizedBox(width: 10.w),
-
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,7 +46,7 @@ class _CustomDrugItemState extends State<CustomDrugItem>
                 Text(
                   widget.drugModel.name,
                   style: GoogleFonts.poppins(
-                    fontSize: 20.sp,
+                    fontSize: 17.sp,
                     fontWeight: FontWeight.bold,
                     color: Colors.black,
                   ),
@@ -59,7 +55,7 @@ class _CustomDrugItemState extends State<CustomDrugItem>
                 SizedBox(height: 5.h),
 
                 Text(
-                  '${widget.drugModel.price} EGP',
+                  '${widget.drugModel.price.toStringAsFixed(2)} EGP',
                   style: GoogleFonts.poppins(
                     fontSize: 15.sp,
                     fontWeight: FontWeight.bold,
@@ -71,42 +67,14 @@ class _CustomDrugItemState extends State<CustomDrugItem>
 
             const Spacer(),
       
-            Column(
-              children: [ 
-                SizedBox(height: 5.h),
-
-                BarcodeWidget(
-                  height: 45.h,
-                  width: 90.w,
-                  data: widget.drugModel.barCode, 
-                  barcode: Barcode.code128(),
-                ),
-
-                const Spacer(), 
-
-                GestureDetector(
-                  onTap: (){},
-                  child: Container( 
-                    height: 35.h,
-                    width: 150.w,
-                    decoration: BoxDecoration(
-                      color: AppColors.blue,
-                      borderRadius: const BorderRadius.only(topLeft: Radius.circular(9), bottomRight: Radius.circular(7)),
-                    ),
-                  
-                    child: Row(
-                      spacing: 5.w,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(MingCute.shopping_bag_1_fill, color: AppColors.white, size: 25.h), 
-                    
-                        Text('Add to cart', style: AppStyles.pharmaScan13BoldWhite),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
+            BarcodeWidget(
+              height: 50.h,
+              width: 100.w,
+              data: widget.drugModel.barCode, 
+              barcode: Barcode.code128(),
             ),
+
+            SizedBox(width: 20.w),
           ],
         ),
       ),
