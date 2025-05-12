@@ -16,6 +16,7 @@ class HomeScreen extends StatelessWidget
       drawer: CustomDrawer(userModel: userModel),
       backgroundColor: AppColors.white,
       body: HomeScreenBody(userModel: userModel),
+      // floatingActionButton: FloatingActionButton(onPressed: onPressed),
     );
   }
 }

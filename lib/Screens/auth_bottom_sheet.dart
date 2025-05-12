@@ -80,14 +80,7 @@ class _AuthBottomSheetState extends State<AuthBottomSheet>
                     if(formKey.currentState!.validate())
                     {
                       setState(() => isLoading = !isLoading);
-                      await FirebaseHelper.authentication(userModel: userModel, context: context);
-                      UserModel userProfile = await FirebaseHelper.getUserProfile(userModel: userModel);
-                      HiveHelper.addUserProfile(userModel: userProfile);
-                      if(context.mounted)
-                      { 
-                        Navigator.pop(context); 
-                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeScreen(userModel: userModel)));
-                      } 
+                      await FirebaseHelper.authentication(userModel: userModel, context: context); 
                       setState(() => isLoading = !isLoading); 
                     }
                   },

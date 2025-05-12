@@ -2,12 +2,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:pharmascan/Helpers/hive_helper.dart';
 import 'package:pharmascan/Models/cart_model.dart';
 import 'package:pharmascan/Models/drug_model.dart';
 import 'package:pharmascan/Models/user_model.dart';
 import 'package:pharmascan/firebase_options.dart';
 import 'package:pharmascan/widgets/custom_cherry_error_toast.dart';
-import 'package:pharmascan/widgets/custom_cherry_success_toast.dart';
+import 'package:pharmascan/widgets/custom_cherry_success_toast.dart'; 
+import '../Screens/home_screen.dart';
 
 abstract class FirebaseHelper 
 { 
@@ -24,10 +26,15 @@ abstract class FirebaseHelper
   {
     try
     { 
-      await firebaeAuthInstance.signInWithEmailAndPassword(email: userModel.email, password: userModel.getPassword); 
+      await firebaeAuthInstance.signInWithEmailAndPassword(email: userModel.email, password: userModel.getPassword);
+      UserModel userProfile = await FirebaseHelper.getUserProfile(userModel: userModel); 
+      HiveHelper.addUserProfile(userModel: userProfile);
+
       if(context.mounted)
       {
         customCherrySuccessToast(successTitle: 'Success', successMessage: 'Login successfully').show(context);
+        Navigator.pop(context); 
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeScreen(userModel: userModel)));
       }
     }
 
