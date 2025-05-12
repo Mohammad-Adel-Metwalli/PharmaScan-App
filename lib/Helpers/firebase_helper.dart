@@ -34,7 +34,7 @@ abstract class FirebaseHelper
       {
         customCherrySuccessToast(successTitle: 'Success', successMessage: 'Login successfully').show(context);
         Navigator.pop(context); 
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeScreen(userModel: userModel)));
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeScreen(userModel: userProfile)));
       }
     }
 

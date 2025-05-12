@@ -26,7 +26,7 @@ abstract class HiveHelper
   static void addUserProfile({required UserModel userModel})
   {
     var box = Hive.box<UserModel>(userProfileBox);
-    box.add(userModel);
+    box.add(userModel); 
   }
 
   static void logout({required UserModel userModel})
