@@ -23,58 +23,67 @@ class _CustomDrugItemState extends State<CustomDrugItem>
     return GestureDetector(
       onTap: widget.onTap,
       child: Container(
-        height: 110.h, 
         width: double.infinity, 
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           border: Border.all(color: AppColors.blue, width: 3),
         ),
 
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        child: Column(
           children: [
-            SizedBox(width: 5.w),
-
-            Image.asset('assets/Panadol.png', scale: 1.3), 
+            Row(
+              children: [
+                SizedBox(width: 5.w),
             
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [ 
-                SizedBox(height: 5.h),
+                Image.asset('assets/Panadol.png', scale: 1.3, height: 150.h, width: 150.w), 
+                
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [ 
+                    SizedBox(height: 5.h),
+            
+                    Text(
+                      widget.drugModel.name,
+                      style: GoogleFonts.poppins(
+                        fontSize: 20.sp,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+            
+                    SizedBox(height: 5.h),
+            
+                    Text(
+                      '${widget.drugModel.price.toStringAsFixed(2)} EGP',
+                      style: GoogleFonts.poppins(
+                        fontSize: 15.sp,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.blue,
+                      ),
+                    ),
 
-                Text(
-                  widget.drugModel.name,
-                  style: GoogleFonts.poppins(
-                    fontSize: 17.sp,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
-                ),
+                    SizedBox(height: 5.h),
 
-                SizedBox(height: 5.h),
-
-                Text(
-                  '${widget.drugModel.price.toStringAsFixed(2)} EGP',
-                  style: GoogleFonts.poppins(
-                    fontSize: 15.sp,
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.blue,
-                  ),
-                ),
+                    Text(
+                      'X ${widget.drugModel.quantity}',
+                      style: GoogleFonts.poppins(
+                        fontSize: 15.sp,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.blue,
+                      ),
+                    ),
+                  ],
+                ), 
               ],
             ),
 
-            const Spacer(),
-      
             BarcodeWidget(
-              height: 50.h,
-              width: 100.w,
+              height: 60.h,
+              width: 150.w,
               data: widget.drugModel.barCode, 
               barcode: Barcode.code128(),
             ),
-
-            SizedBox(width: 20.w),
           ],
         ),
       ),

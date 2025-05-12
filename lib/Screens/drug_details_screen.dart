@@ -125,7 +125,7 @@ class _DrugDetailsScreenState extends State<DrugDetailsScreen>
                 builder: (context, state) 
                 {
                   return CustomButton(
-                    onPressed: () => BlocProvider.of<CartCubit>(context).addToCart(cartModel: cartModel!),
+                    onPressed: () => cartModel!.quantity == 0 ? null : BlocProvider.of<CartCubit>(context).addToCart(cartModel: cartModel!),
                     buttonColor: AppColors.blue, 
                     buttonBody: Row(
                       children: [

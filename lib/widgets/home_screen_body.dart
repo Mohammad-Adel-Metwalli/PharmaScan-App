@@ -73,7 +73,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody>
                   scrollDirection: Axis.horizontal,
                   itemCount: allOrders.length,
                   itemBuilder: (context, index) => allOrders[index].email == widget.userModel.email ? Padding(
-                    padding: EdgeInsets.only(left: index == 0 ? 10.w : 0, right: index == allOrders.length - 1 ? 10.w : 7.w),
+                    padding: EdgeInsets.only(left: index == 0 ? 10.w : 7.w, right: index == allOrders.length - 1 ? 10.w : 7.w),
                     child: OrdersHistoryItem(historyModel: allOrders[index]),
                   ) : const SizedBox.shrink(),
                 ),
