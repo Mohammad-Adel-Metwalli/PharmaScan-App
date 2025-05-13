@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pharmascan/utils/app_colors.dart';
 
-class Activation extends StatelessWidget 
-{
-  const Activation({super.key, this.height = 15, this.width = 15, this.borderWidth = 2});
+class Activation extends StatelessWidget {
+  const Activation({
+    super.key,
+    this.height = 15,
+    this.width = 15,
+    this.borderWidth = 2,
+  });
   final double height, width, borderWidth;
 
   @override
