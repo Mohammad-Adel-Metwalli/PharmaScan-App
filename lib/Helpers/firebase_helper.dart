@@ -11,6 +11,7 @@ import 'package:pharmascan/widgets/custom_cherry_error_toast.dart';
 import 'package:pharmascan/widgets/custom_cherry_success_toast.dart'; 
 import '../Screens/home_screen.dart';
 
+
 abstract class FirebaseHelper 
 { 
   static FirebaseAuth firebaeAuthInstance = FirebaseAuth.instance;

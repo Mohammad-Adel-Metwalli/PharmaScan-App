@@ -9,9 +9,12 @@ import 'package:pharmascan/Models/cart_model.dart';
 import 'package:pharmascan/utils/app_colors.dart';
 import 'package:pharmascan/widgets/custom_button.dart';
 
-class CustomCartItem extends StatefulWidget 
-{
-  const CustomCartItem({super.key, required this.cartModel, required this.index,}); 
+class CustomCartItem extends StatefulWidget {
+  const CustomCartItem({
+    super.key,
+    required this.cartModel,
+    required this.index,
+  });
   final CartModel cartModel;
   final int index;
 
@@ -19,32 +22,35 @@ class CustomCartItem extends StatefulWidget
   State<CustomCartItem> createState() => _CustomCartItemState();
 }
 
-class _CustomCartItemState extends State<CustomCartItem> 
-{
+class _CustomCartItemState extends State<CustomCartItem> {
   @override
-  Widget build(BuildContext context) 
-  {
+  Widget build(BuildContext context) {
     return Container(
-      width: double.infinity, 
+      width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         border: Border.all(color: AppColors.blue, width: 3),
       ),
-    
+
       child: Column(
         children: [
           Row(
             children: [
               SizedBox(width: 5.w),
-              
-              Image.asset('assets/Panadol.png', scale: 1.3, height: 100.h, width: 100.w), 
-              
+
+              Image.asset(
+                'assets/Panadol.png',
+                scale: 1.3,
+                height: 100.h,
+                width: 100.w,
+              ),
+
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [ 
+                children: [
                   SizedBox(height: 5.h),
-              
+
                   Text(
                     widget.cartModel.name,
                     style: GoogleFonts.poppins(
@@ -53,9 +59,9 @@ class _CustomCartItemState extends State<CustomCartItem>
                       color: Colors.black,
                     ),
                   ),
-              
+
                   SizedBox(height: 5.h),
-              
+
                   Text(
                     '${widget.cartModel.price} EGP',
                     style: GoogleFonts.poppins(
@@ -64,14 +70,28 @@ class _CustomCartItemState extends State<CustomCartItem>
                       color: AppColors.blue,
                     ),
                   ),
-          
-                  Row( 
+
+                  Row(
                     children: [
-                      IconButton( 
-                        onPressed: () => widget.cartModel.quantity == 0 ? null : BlocProvider.of<CartCubit>(context).updateCart(cartModel: widget.cartModel, index: widget.index, isIncrement: false), 
-                        icon: Icon(CupertinoIcons.minus_circle_fill, color: AppColors.red, size: 30.h),
+                      IconButton(
+                        onPressed:
+                            () =>
+                                widget.cartModel.quantity == 0
+                                    ? null
+                                    : BlocProvider.of<CartCubit>(
+                                      context,
+                                    ).updateCart(
+                                      cartModel: widget.cartModel,
+                                      index: widget.index,
+                                      isIncrement: false,
+                                    ),
+                        icon: Icon(
+                          CupertinoIcons.minus_circle_fill,
+                          color: AppColors.red,
+                          size: 30.h,
+                        ),
                       ),
-                  
+
                       Text(
                         widget.cartModel.quantity.toString(),
                         style: GoogleFonts.poppins(
@@ -80,15 +100,25 @@ class _CustomCartItemState extends State<CustomCartItem>
                           color: AppColors.black,
                         ),
                       ),
-                  
-                      IconButton( 
-                        onPressed: () => BlocProvider.of<CartCubit>(context).updateCart(cartModel: widget.cartModel, index: widget.index, isIncrement: true), 
-                        icon: Icon(CupertinoIcons.add_circled_solid, color: AppColors.green, size: 30.h),
+
+                      IconButton(
+                        onPressed:
+                            () =>
+                                BlocProvider.of<CartCubit>(context).updateCart(
+                                  cartModel: widget.cartModel,
+                                  index: widget.index,
+                                  isIncrement: true,
+                                ),
+                        icon: Icon(
+                          CupertinoIcons.add_circled_solid,
+                          color: AppColors.green,
+                          size: 30.h,
+                        ),
                       ),
-                    ], 
+                    ],
                   ),
                 ],
-              ), 
+              ),
             ],
           ),
 
@@ -97,11 +127,14 @@ class _CustomCartItemState extends State<CustomCartItem>
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: CustomButton(
-              onPressed: () => BlocProvider.of<CartCubit>(context).removeFromCart(cartModel: widget.cartModel),
-              buttonColor: AppColors.red, 
+              onPressed:
+                  () => BlocProvider.of<CartCubit>(
+                    context,
+                  ).removeFromCart(cartModel: widget.cartModel),
+              buttonColor: AppColors.red,
               buttonBody: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [ 
+                children: [
                   Icon(Iconsax.trash_bold, color: AppColors.white, size: 30.h),
                   SizedBox(width: 5.w),
                   Text(
@@ -120,4 +153,4 @@ class _CustomCartItemState extends State<CustomCartItem>
       ),
     );
   }
-} 
+}
