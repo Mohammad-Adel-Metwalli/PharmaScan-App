@@ -12,12 +12,12 @@ void main() async
 { 
   await HiveHelper.hiveConfiguration(); 
   await FirebaseHelper.firebaseConfiguration();
-  runApp(const MyApp());
+  runApp(const PharmaScanApp());
 }
 
-class MyApp extends StatelessWidget
+class PharmaScanApp extends StatelessWidget
 {
-  const MyApp({super.key});
+  const PharmaScanApp({super.key});
 
   @override
   Widget build(BuildContext context)
@@ -31,11 +31,8 @@ class MyApp extends StatelessWidget
       useInheritedMediaQuery: true,
       designSize: Size(MediaQuery.sizeOf(context).width, MediaQuery.sizeOf(context).height),
 
-      child: MultiBlocProvider(
-        providers: [
-          BlocProvider(create: (context) => CartCubit()),
-        ],
-
+      child: BlocProvider(
+        create: (context) => CartCubit(),
         child: MaterialApp(
           home: userModel.isLoggedIn ? HomeScreen(userModel: userModel) : AuthenticationScreen(),
           debugShowCheckedModeBanner: false,

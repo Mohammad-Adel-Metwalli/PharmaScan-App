@@ -27,7 +27,6 @@ class HomeScreenBody extends StatefulWidget
 
 class _HomeScreenBodyState extends State<HomeScreenBody> 
 {
-  List<OrdersHistoryModel> history = [];
   String searchedDrug = '';
 
   @override
