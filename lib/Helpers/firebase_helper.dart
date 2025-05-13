@@ -188,6 +188,14 @@ abstract class FirebaseHelper
       'phoneNumber': userModel.phoneNumber, 
       'orderNumber': 'A-$orderNumber',
     });
+
+    for(var cart in myCart)
+    {
+      QuerySnapshot<Map<String, dynamic>> searchedDrug = await firebaseFirestoreInstance.collection('drugs').where('barCode', isEqualTo: cart.barCode).get();
+      await firebaseFirestoreInstance.collection('drugs').doc(searchedDrug.docs.first.id).update({
+        'quantity': int.parse(searchedDrug.docs.first.data()['quantity'].toString()) - cart.quantity,
+      });
+    }
   } 
 
   static Future<void> addDrug({required DrugModel drugModel}) async

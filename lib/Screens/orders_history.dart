@@ -48,7 +48,7 @@ class OrdersHistory extends StatelessWidget
               ],
             ),
 
-            SizedBox(height: 20.h),
+            // SizedBox(height: 20.h),
 
             StreamBuilder(
               stream: FirebaseHelper.fetchAllOrders(),
@@ -158,12 +158,12 @@ class OrdersHistory extends StatelessWidget
                 ),
               ],
             ), 
-            separatorBuilder: (context, index) => SizedBox(height: 15.h), 
+            separatorBuilder: (context, index) => SizedBox(height: 10.h), 
           ),
         ],
       ),
     ), 
-                    separatorBuilder: (context, index) => SizedBox(height: 10.h),
+                    separatorBuilder: (context, index) => SizedBox(height: 5.h),
                   );
                 }
 

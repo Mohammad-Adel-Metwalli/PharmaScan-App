@@ -68,7 +68,7 @@ class CustomAppBar extends StatelessWidget
               
               SizedBox(height: 2.h),
 
-              Text('Mr. ${userModel.username}', style: AppStyles.pharmaScan20Weight700White),
+              Text('Mr. ${userModel.username}', style: AppStyles.pharmaScan20Weight700White, overflow: TextOverflow.ellipsis, maxLines: 1),
             ],
           ),
         ],
