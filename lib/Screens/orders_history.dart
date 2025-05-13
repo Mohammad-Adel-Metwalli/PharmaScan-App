@@ -9,6 +9,7 @@ import 'package:pharmascan/Models/orders_history_model.dart';
 import 'package:pharmascan/Models/user_model.dart';
 import 'package:pharmascan/utils/app_colors.dart';
 import 'package:pharmascan/utils/app_styles.dart';
+import 'package:pharmascan/widgets/custom_circular_indicator.dart';
 
 class OrdersHistory extends StatelessWidget 
 {
@@ -169,7 +170,7 @@ class OrdersHistory extends StatelessWidget
 
                 else
                 {
-                  return Center(child: CircularProgressIndicator());
+                  return Center(child: CustomCircularIndicator());
                 }
               }
             ),
